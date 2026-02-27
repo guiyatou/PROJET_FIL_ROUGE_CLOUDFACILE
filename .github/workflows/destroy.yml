@@ -1,0 +1,36 @@
+name: Destroy Infrastructure
+
+on:
+  workflow_dispatch:  # Déclenchement MANUEL uniquement
+
+jobs:
+  terraform:
+    name: Terraform Destroy
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupère le code du repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Installe Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      # 3. Configure les credentials AWS
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      # 4. Initialise Terraform
+      - name: Terraform Init
+        working-directory: terraform
+        run: terraform init
+
+      # 5. Détruit toute l'infrastructure
+      - name: Terraform Destroy
+        working-directory: terraform
+        run: terraform destroy -auto-approve
