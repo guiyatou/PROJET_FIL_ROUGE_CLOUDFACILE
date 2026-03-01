@@ -4,3 +4,5 @@
 *.exe
 terraform.tfvars
 .terraform/
+keySSH_ProjetFilRouge
+keySSH_ProjetFilRouge.pub
