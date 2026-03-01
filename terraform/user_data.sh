@@ -7,21 +7,20 @@ apt-get install -y docker.io
 systemctl start docker
 systemctl enable docker
 
-# Crée le dossier pour la page web
+# Cree le dossier pour la page web
 mkdir -p /home/ubuntu/app
 
-# Crée la page index.html
+# Cree la page index.html
 cat > /home/ubuntu/app/index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Projet DevOps</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: Arial, sans-serif;
             background: #0f0f1a;
             color: white;
             min-height: 100vh;
@@ -42,9 +41,7 @@ cat > /home/ubuntu/app/index.html << 'EOF'
         h1 {
             font-size: 48px;
             margin-bottom: 16px;
-            background: linear-gradient(90deg, #00c853, #00b0ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #00c853;
         }
         p { color: #aaa; font-size: 18px; margin-bottom: 40px; }
         .stack {
@@ -61,44 +58,39 @@ cat > /home/ubuntu/app/index.html << 'EOF'
             padding: 20px 24px;
             min-width: 140px;
         }
-        .card .icon { font-size: 32px; margin-bottom: 8px; }
         .card .name { font-size: 14px; color: #aaa; }
         .footer { color: #555; font-size: 13px; }
         .dot {
-            width: 10px; height: 10px;
+            width: 10px;
+            height: 10px;
             background: #00c853;
             border-radius: 50%;
             display: inline-block;
             margin-right: 6px;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="badge">🚀 Déployé via GitHub Actions</div>
+        <div class="badge">Deploye via GitHub Actions</div>
         <h1>Mon Projet DevOps</h1>
-        <p>Infrastructure Cloud automatisée, sécurisée et surveillée sur AWS</p>
+        <p>Infrastructure Cloud automatisee, securisee et surveillee sur AWS</p>
         <div class="stack">
-            <div class="card"><div class="icon">🏗️</div><div class="name">Terraform</div></div>
-            <div class="card"><div class="icon">☁️</div><div class="name">AWS EC2</div></div>
-            <div class="card"><div class="icon">🐳</div><div class="name">Docker</div></div>
-            <div class="card"><div class="icon">⚙️</div><div class="name">GitHub Actions</div></div>
-            <div class="card"><div class="icon">📊</div><div class="name">Grafana</div></div>
+            <div class="card"><div class="name">Terraform</div></div>
+            <div class="card"><div class="name">AWS EC2</div></div>
+            <div class="card"><div class="name">Docker</div></div>
+            <div class="card"><div class="name">GitHub Actions</div></div>
+            <div class="card"><div class="name">Grafana</div></div>
         </div>
         <div class="footer">
-            <span class="dot"></span> Serveur actif — AWS eu-west-1 (Irlande)
+            <span class="dot"></span> Serveur actif - AWS eu-west-1 Irlande
         </div>
     </div>
 </body>
 </html>
 EOF
 
-# Lance Nginx avec notre page personnalisée
+# Lance Nginx avec notre page personnalisee
 docker run -d \
   --name nginx \
   --restart always \
